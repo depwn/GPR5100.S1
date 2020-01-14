@@ -46,7 +46,8 @@ public class Movement : MonoBehaviour
                 //if clicked and able to move then moving the pad to the mouse position
                 //transform.position = mousePosition;
                 rb.MovePosition(mousePosition);
-                
+
+                transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2f, 2f), Mathf.Clamp(transform.position.y, -4f, 4f), transform.position.z);
             }
            
         }
