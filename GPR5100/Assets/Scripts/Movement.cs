@@ -1,59 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Movement : MonoBehaviour
+public class Movement : MonoBehaviourPun
 {
-
-    bool clicked = true;
-    bool canMove;
+   
+    [SerializeField] private GameObject leftBorder;
+    [SerializeField] private GameObject rightBorder;
+    [SerializeField] private GameObject topBorder;
+    [SerializeField] private GameObject bottomBorder;
 
     Rigidbody rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
   
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        PlayerMove();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            if (clicked)
+            if (Cursor.visible)
             {
-                clicked = false;
-
-                //checking if mouse position differs in the x axis < or >= than players(hockey pad) transform position.x
-                //checking if mouse position differs in the z axis < or >= than players(hockey pad) transform position.z 
-                // 7.5  is half the x hockey pad size. prolly needed. need validation ???
-                if ((mousePosition.x >= transform.position.x && mousePosition.x < transform.position.x ||
-                 mousePosition.x <= transform.position.x && mousePosition.x > transform.position.x ) &&
-                 (mousePosition.z >= transform.position.z && mousePosition.z < transform.position.z  ||
-                 mousePosition.z <= transform.position.z && mousePosition.z > transform.position.z )) 
-                {
-                    canMove = true;
-                }
-                else
-                {
-                    canMove = false;
-                }
+                Cursor.visible = false;
             }
-
-            if (canMove)
+            else
             {
-                //if clicked and able to move then moving the pad to the mouse position
-                //transform.position = mousePosition;
-                rb.MovePosition(mousePosition);
-
-                transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2f, 2f), Mathf.Clamp(transform.position.y, -4f, 4f), transform.position.z);
+                Cursor.visible = true;
             }
-           
         }
-        else
+
+    }
+
+    private void PlayerMove()
+    {
+        Vector3 mousePos = Input.mousePosition;
+
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+        RaycastHit raycastHit;
+
+        if (Physics.Raycast(ray,out raycastHit)/*&& raycastHit.collider.gameObject.GetPhotonView().IsMine*/)
         {
-            clicked = true;
+            transform.position = raycastHit.point;
+
+            float clampedX = Mathf.Clamp(transform.position.x, leftBorder.transform.position.x, rightBorder.transform.position.x);
+            float clampedZ = Mathf.Clamp(transform.position.z, bottomBorder.transform.position.z, topBorder.transform.position.z);
+            transform.position = new Vector3(clampedX, 1.35f, clampedZ);
+
         }
     }
+
+    
 }
