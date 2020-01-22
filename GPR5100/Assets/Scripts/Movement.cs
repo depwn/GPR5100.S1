@@ -51,7 +51,7 @@ public class Movement : MonoBehaviourPun
 
             float clampedX = Mathf.Clamp(transform.position.x, leftBorder.transform.position.x, rightBorder.transform.position.x);
             float clampedZ = Mathf.Clamp(transform.position.z, bottomBorder.transform.position.z, topBorder.transform.position.z);
-            transform.position = new Vector3(clampedX, 1.35f, clampedZ);
+            transform.position = new Vector3(clampedX, 1.31f, clampedZ);
 
         }
     }
