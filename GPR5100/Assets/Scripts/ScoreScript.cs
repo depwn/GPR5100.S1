@@ -13,7 +13,7 @@ public class ScoreScript : MonoBehaviour
     [SerializeField]
     private Text Player1ScoreText, Player2ScoreText;
 
-    [SerializeField]
+    
     private int player1score, player2score;
 
     public void IncreaseScore(Score score)
