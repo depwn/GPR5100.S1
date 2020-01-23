@@ -56,5 +56,13 @@ public class Movement : MonoBehaviourPun
         }
     }
 
-    
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.collider.name == "Puck")
+        {
+            Debug.Log(col.collider.name);
+            rb.AddForce(Vector3.forward, ForceMode.Impulse);
+        }
+        
+    }
 }
