@@ -49,21 +49,36 @@ public class Movement : MonoBehaviourPun
 
     private void PlayerMove()
     {
-        Vector3 mousePos = Input.mousePosition;
-
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        RaycastHit raycastHit;
-
-        if (Physics.Raycast(ray,out raycastHit)/*&& raycastHit.collider.gameObject.GetPhotonView().IsMine*/)
+        if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
-            transform.position = raycastHit.point;
+            
+            
+            
+            //else
+            //{
+            //    PhotonNetwork.Instantiate("AirHockeyPad2", new Vector3(0.0f, 1.31f, 2.20f), Quaternion.identity);
+            //}
+            Vector3 mousePos = Input.mousePosition;
 
-            float clampedX = Mathf.Clamp(transform.position.x, leftBorder.transform.position.x, rightBorder.transform.position.x);
-            float clampedZ = Mathf.Clamp(transform.position.z, bottomBorder.transform.position.z, topBorder.transform.position.z);
-            transform.position = new Vector3(clampedX, 1.31f, clampedZ);
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
+            RaycastHit raycastHit;
+
+            if (Physics.Raycast(ray, out raycastHit))
+            {
+                //if (raycastHit.collider.gameObject.GetPhotonView().IsMine)
+                //{
+                    transform.position = raycastHit.point;
+
+                    //float clampedX = Mathf.Clamp(transform.position.x, leftBorder.transform.position.x, rightBorder.transform.position.x);
+                    //float clampedZ = Mathf.Clamp(transform.position.z, bottomBorder.transform.position.z, topBorder.transform.position.z);
+                    //transform.position = new Vector3(clampedX, 1.31f, clampedZ);
+                //}
+                
+
+            }
         }
+        
         
     }
 

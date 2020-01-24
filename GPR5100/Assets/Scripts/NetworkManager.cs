@@ -127,7 +127,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel("GameScene");
+            PhotonNetwork.LoadLevel("AirHockeyTable");
         }
     }
     #endregion
