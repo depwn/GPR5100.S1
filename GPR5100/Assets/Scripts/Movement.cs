@@ -12,16 +12,24 @@ public class Movement : MonoBehaviourPun
     [SerializeField] private GameObject bottomBorder;
 
     Rigidbody rb;
+    //[SerializeField]
+    //Rigidbody rb2;
+
+    [SerializeField]
+    private float thrust=100000f;
 
     void Start()
     {
+        
         rb = GetComponent<Rigidbody>();
+        //rb2 = GetComponent<Rigidbody>();
     }
 
   
     void FixedUpdate()
     {
         PlayerMove();
+        //rb.AddForce(transform.forward * thrust);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -34,6 +42,8 @@ public class Movement : MonoBehaviourPun
                 Cursor.visible = true;
             }
         }
+
+        
 
     }
 
@@ -54,15 +64,24 @@ public class Movement : MonoBehaviourPun
             transform.position = new Vector3(clampedX, 1.31f, clampedZ);
 
         }
+        
     }
 
-    private void OnCollisionEnter(Collision col)
+    private void OnCollisionStay(Collision col)
     {
         if(col.collider.name == "Puck")
         {
             Debug.Log(col.collider.name);
-            rb.AddForce(Vector3.forward, ForceMode.Impulse);
+            //rb.AddForce(Vector3.forward, ForceMode.Impulse);
+            //rb.AddForce(transform.forward * thrust,ForceMode.Impulse);
+            ApplyForce(col.rigidbody);
         }
+        
+    }
+    void ApplyForce(Rigidbody body)
+    {
+        Vector3 direction = (body.transform.position - transform.position)*thrust;
+        body.AddForceAtPosition(direction.normalized, transform.position,ForceMode.Impulse);
         
     }
 }
