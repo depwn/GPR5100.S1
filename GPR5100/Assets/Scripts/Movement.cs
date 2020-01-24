@@ -20,7 +20,21 @@ public class Movement : MonoBehaviourPun
 
     void Start()
     {
-        
+        if (PhotonNetwork.IsMasterClient)
+        {
+            leftBorder = GameObject.Find("LeftBorder");
+            rightBorder = GameObject.Find("RightBorder");
+            bottomBorder = GameObject.Find("BottomBorder");
+            topBorder = GameObject.Find("TopBorder");
+        }
+        else
+        {
+            leftBorder = GameObject.Find("LeftBorder");
+            rightBorder = GameObject.Find("RightBorder");
+            bottomBorder = GameObject.Find("BottomBorder1");
+            topBorder = GameObject.Find("TopBorder");
+        }
+       
         rb = GetComponent<Rigidbody>();
         //rb2 = GetComponent<Rigidbody>();
     }
@@ -51,13 +65,7 @@ public class Movement : MonoBehaviourPun
     {
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
-            
-            
-            
-            //else
-            //{
-            //    PhotonNetwork.Instantiate("AirHockeyPad2", new Vector3(0.0f, 1.31f, 2.20f), Quaternion.identity);
-            //}
+        
             Vector3 mousePos = Input.mousePosition;
 
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
@@ -70,12 +78,11 @@ public class Movement : MonoBehaviourPun
                 //{
                     transform.position = raycastHit.point;
 
-                    //float clampedX = Mathf.Clamp(transform.position.x, leftBorder.transform.position.x, rightBorder.transform.position.x);
-                    //float clampedZ = Mathf.Clamp(transform.position.z, bottomBorder.transform.position.z, topBorder.transform.position.z);
-                    //transform.position = new Vector3(clampedX, 1.31f, clampedZ);
+                    float clampedX = Mathf.Clamp(transform.position.x, leftBorder.transform.position.x, rightBorder.transform.position.x);
+                    float clampedZ = Mathf.Clamp(transform.position.z, bottomBorder.transform.position.z, topBorder.transform.position.z);
+                    transform.position = new Vector3(clampedX, 1.31f, clampedZ);
                 //}
-                
-
+     
             }
         }
         
