@@ -105,19 +105,16 @@ public class Movement : MonoBehaviourPunCallbacks
 
     }
 
-    [PunRPC]
-    private void OnCollisionStay(Collision col)
+    private void OnCollisionEnter(Collision col)
     {
-        if(col.collider.name == "Puck")
+        if(col.collider.CompareTag("Puck"))
         {
             Debug.Log(col.collider.name);
-            //rb.AddForce(Vector3.forward, ForceMode.Impulse);
-            //rb.AddForce(transform.forward * thrust,ForceMode.Impulse);
             ApplyForce(col.rigidbody);
         }
         
     }
-    [PunRPC]
+    
     void ApplyForce(Rigidbody body)
     {
         Vector3 direction = (body.transform.position - transform.position)*thrust;
