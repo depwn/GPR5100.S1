@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Movement : MonoBehaviourPun
+public class Movement : MonoBehaviourPunCallbacks
 {
    
     [SerializeField] private GameObject leftBorder;
     [SerializeField] private GameObject rightBorder;
     [SerializeField] private GameObject topBorder;
     [SerializeField] private GameObject bottomBorder;
+    [SerializeField] private GameObject bottomBorder1;
 
     Rigidbody rb;
     //[SerializeField]
@@ -31,7 +32,7 @@ public class Movement : MonoBehaviourPun
         {
             leftBorder = GameObject.Find("LeftBorder");
             rightBorder = GameObject.Find("RightBorder");
-            bottomBorder = GameObject.Find("BottomBorder1");
+            bottomBorder1 = GameObject.Find("BottomBorder1");
             topBorder = GameObject.Find("TopBorder");
         }
        
@@ -77,18 +78,34 @@ public class Movement : MonoBehaviourPun
                 //if (raycastHit.collider.gameObject.GetPhotonView().IsMine)
                 //{
                     transform.position = raycastHit.point;
-
+                if(PhotonNetwork.IsMasterClient)
+                {
                     float clampedX = Mathf.Clamp(transform.position.x, leftBorder.transform.position.x, rightBorder.transform.position.x);
                     float clampedZ = Mathf.Clamp(transform.position.z, bottomBorder.transform.position.z, topBorder.transform.position.z);
                     transform.position = new Vector3(clampedX, 1.31f, clampedZ);
+
+                }
+                else
+                {
+                    float clampedX = Mathf.Clamp(transform.position.x, leftBorder.transform.position.x, rightBorder.transform.position.x);
+                    float clampedZ = Mathf.Clamp(transform.position.z,topBorder.transform.position.z, bottomBorder1.transform.position.z);
+                    transform.position = new Vector3(clampedX, 1.31f, clampedZ);
+                }
+                    
                 //}
      
             }
         }
-        
-        
+        else
+        {
+            transform.GetComponent<Movement>().enabled = false;
+
+        }
+
+
     }
 
+    [PunRPC]
     private void OnCollisionStay(Collision col)
     {
         if(col.collider.name == "Puck")
@@ -100,6 +117,7 @@ public class Movement : MonoBehaviourPun
         }
         
     }
+    [PunRPC]
     void ApplyForce(Rigidbody body)
     {
         Vector3 direction = (body.transform.position - transform.position)*thrust;
@@ -107,3 +125,4 @@ public class Movement : MonoBehaviourPun
         
     }
 }
+

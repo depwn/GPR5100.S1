@@ -129,6 +129,7 @@ MonoBehaviour:
   rightBorder: {fileID: 0}
   topBorder: {fileID: 0}
   bottomBorder: {fileID: 0}
+  bottomBorder1: {fileID: 0}
   thrust: 100000
 --- !u!114 &1788907703087322671
 MonoBehaviour:
