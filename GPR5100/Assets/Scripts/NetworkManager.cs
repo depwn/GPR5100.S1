@@ -103,7 +103,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.JoinLobby();
         }
-        Debug.Log("mpika");
+        Debug.Log("Entered the Room");
         ActivatePanel(RoomList_UI_Panel.name);
     }
     public void OnBackButtonClicked()

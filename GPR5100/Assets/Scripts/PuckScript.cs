@@ -12,6 +12,7 @@ public class PuckScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         goal = false;
+        
 
     }
 

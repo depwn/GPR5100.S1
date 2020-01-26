@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class Movement : MonoBehaviourPunCallbacks
 {
@@ -13,8 +14,9 @@ public class Movement : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject bottomBorder1;
 
     Rigidbody rb;
-    //[SerializeField]
-    //Rigidbody rb2;
+
+    [SerializeField]
+    TextMeshProUGUI playerNameText;
 
     [SerializeField]
     private float thrust=100000f;
@@ -37,7 +39,7 @@ public class Movement : MonoBehaviourPunCallbacks
         }
        
         rb = GetComponent<Rigidbody>();
-        //rb2 = GetComponent<Rigidbody>();
+        SetPlayerUI();
     }
 
   
@@ -66,7 +68,8 @@ public class Movement : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
-        
+
+            transform.GetComponent<Movement>().enabled = true;
             Vector3 mousePos = Input.mousePosition;
 
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
@@ -120,6 +123,15 @@ public class Movement : MonoBehaviourPunCallbacks
         Vector3 direction = (body.transform.position - transform.position)*thrust;
         body.AddForceAtPosition(direction.normalized, transform.position,ForceMode.Impulse);
         
+    }
+
+    void SetPlayerUI()
+    {
+        if (playerNameText != null)
+        {
+          playerNameText.text = photonView.Owner.NickName;
+        }
+       
     }
 }
 
