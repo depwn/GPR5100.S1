@@ -15,6 +15,8 @@ public class Movement : MonoBehaviourPunCallbacks
 
     Rigidbody rb;
 
+    static public List<string> names = new List<string>();
+
     [SerializeField]
     TextMeshProUGUI playerNameText;
 
@@ -130,6 +132,7 @@ public class Movement : MonoBehaviourPunCallbacks
         if (playerNameText != null)
         {
           playerNameText.text = photonView.Owner.NickName;
+            names.Add(playerNameText.text);
         }
        
     }

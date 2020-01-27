@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PuckScript : MonoBehaviour
+public class PuckScript : MonoBehaviourPunCallbacks
 {
     public ScoreScript Score;
     private bool goal ;

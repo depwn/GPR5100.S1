@@ -143,7 +143,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     public override void OnConnected()
     {
-        Debug.Log("Conneceted to Internet");
+        Debug.Log("Connected to Internet");
     }
     //done
     public override void OnConnectedToMaster()
