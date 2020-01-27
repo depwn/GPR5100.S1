@@ -5,12 +5,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class ScoreScript : MonoBehaviourPunCallbacks
 {
     [Header("Win UI Panel")]
-    public string playerNameText;
     public GameObject Win_UI_Panel;
+    
+    private string playerNameText;
+    public GameObject WIN_UI_NameText;
+    
+    bool isActive = false;
+    
+
     public enum Score
     {
         FirstPlayerScore,SecondPlayerScore
@@ -24,6 +31,10 @@ public class ScoreScript : MonoBehaviourPunCallbacks
 
     public void Start()
     {
+        //Win_UI_Panel = GameObject.Find("WinCanvas").transform.Find("WinPanel").gameObject;
+        //Win_UI_Panel = GameObject.Find("WinCanvas").transform.GetComponentInChildren
+        //Win_UI_Panel = GameObject.Find("WinCanvas");
+        //Win_UI_Panel.SetActive(false);
         player1score = 0;
         player2score = 0;
     }
@@ -35,32 +46,69 @@ public class ScoreScript : MonoBehaviourPunCallbacks
         if(score == Score.FirstPlayerScore)
         {
             Player1ScoreText.text = (++player1score).ToString();
+            if (player1score >= 1)
+            {
+                PhotonNetwork.DestroyAll();
+                playerNameText = Movement.names[0];
+                Debug.Log(playerNameText + " won");
+                /*if (!isActive)
+                {
+                    ActivatePanel(Win_UI_Panel.name);
+
+                }*/
+                isActive = true;
+                
+            }
         }
         else
         {
             Player2ScoreText.text = (++player2score).ToString();
+            if (player2score >= 1)
+            {
+
+                PhotonNetwork.DestroyAll();
+                playerNameText = Movement.names[1];
+                Debug.Log(playerNameText+ " won");
+                isActive = true;
+                /*if (!isActive)
+                {
+                    ActivatePanel(Win_UI_Panel.name);
+
+                }*/
+                
+            }
         }
     }
 
     private void Update()
     {
-        if(player1score>=20){
-            PhotonNetwork.DestroyAll();
-            playerNameText = Movement.names[0];
-            //Win_UI_Panel= GetComponentInChildren.text
-            winnerwinnerchickendinner();
-        }
-        else if (player2score >= 20)
+        if (isActive == true)
         {
-            PhotonNetwork.DestroyAll();
-            playerNameText = Movement.names[1];
-            winnerwinnerchickendinner();
+            ActivatePanel(Win_UI_Panel.name);
+            //Win_UI_Panel.SetActive(true);
         }
     }
-
-    public void winnerwinnerchickendinner()
+    /*private void Update()
     {
+        if(player1score>=5){
+            
+            playerNameText = Movement.names[0];
+            winnerwinnerchickendinner();
+            PhotonNetwork.DestroyAll();
+        }
+        else if (player2score >= 5)
+        {
+            
+            playerNameText = Movement.names[1];
+            winnerwinnerchickendinner();
+            PhotonNetwork.DestroyAll();
+        }
+    }*/
+
+
+    public void ActivatePanel(string panelToBeActivated)
+    {
+        Win_UI_Panel.SetActive(panelToBeActivated.Equals(Win_UI_Panel.name));
         
-        Win_UI_Panel.SetActive(true);
     }
 }

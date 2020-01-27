@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41566fd63a41c8649bb30bf0190c3bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNameText: 
   Win_UI_Panel: {fileID: 0}
+  WIN_UI_NameText: {fileID: 0}
   Player1ScoreText: {fileID: 0}
   Player2ScoreText: {fileID: 0}
