@@ -39,7 +39,6 @@ public class Movement : MonoBehaviourPunCallbacks
             bottomBorder1 = GameObject.Find("BottomBorder1");
             topBorder = GameObject.Find("TopBorder");
         }
-       
         rb = GetComponent<Rigidbody>();
         SetPlayerUI();
     }
@@ -48,8 +47,7 @@ public class Movement : MonoBehaviourPunCallbacks
     void FixedUpdate()
     {
         PlayerMove();
-        //rb.AddForce(transform.forward * thrust);
-
+      
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Cursor.visible)
@@ -61,16 +59,12 @@ public class Movement : MonoBehaviourPunCallbacks
                 Cursor.visible = true;
             }
         }
-
-        
-
     }
 
     private void PlayerMove()
     {
         if (PhotonNetwork.IsConnected && photonView.IsMine)
         {
-
             transform.GetComponent<Movement>().enabled = true;
             Vector3 mousePos = Input.mousePosition;
 
@@ -80,9 +74,7 @@ public class Movement : MonoBehaviourPunCallbacks
 
             if (Physics.Raycast(ray, out raycastHit))
             {
-                //if (raycastHit.collider.gameObject.GetPhotonView().IsMine)
-                //{
-                    transform.position = raycastHit.point;
+                transform.position = raycastHit.point;
                 if(PhotonNetwork.IsMasterClient)
                 {
                     float clampedX = Mathf.Clamp(transform.position.x, leftBorder.transform.position.x, rightBorder.transform.position.x);
@@ -96,17 +88,12 @@ public class Movement : MonoBehaviourPunCallbacks
                     float clampedZ = Mathf.Clamp(transform.position.z,topBorder.transform.position.z, bottomBorder1.transform.position.z);
                     transform.position = new Vector3(clampedX, 1.31f, clampedZ);
                 }
-                    
-                //}
-     
             }
         }
         else
         {
             transform.GetComponent<Movement>().enabled = false;
-
         }
-
 
     }
 
@@ -117,24 +104,21 @@ public class Movement : MonoBehaviourPunCallbacks
             Debug.Log(col.collider.name);
             ApplyForce(col.rigidbody);
         }
-        
     }
     
     void ApplyForce(Rigidbody body)
     {
         Vector3 direction = (body.transform.position - transform.position)*thrust;
         body.AddForceAtPosition(direction.normalized, transform.position,ForceMode.Impulse);
-        
     }
 
     void SetPlayerUI()
     {
         if (playerNameText != null)
         {
-          playerNameText.text = photonView.Owner.NickName;
+            playerNameText.text = photonView.Owner.NickName;
             names.Add(playerNameText.text);
         }
-       
     }
 }
 

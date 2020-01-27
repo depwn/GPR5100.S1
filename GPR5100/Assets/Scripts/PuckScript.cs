@@ -14,9 +14,6 @@ public class PuckScript : MonoBehaviourPunCallbacks
     {
         rb = GetComponent<Rigidbody>();
         goal = false;
-        
-        
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,10 +25,7 @@ public class PuckScript : MonoBehaviourPunCallbacks
             {
                 Debug.Log("problem2");
                 other.gameObject.GetComponent<PhotonView>().RPC("IncreaseScore",RpcTarget.AllBuffered,ScoreScript.Score.FirstPlayerScore);
-                //this.gameObject.GetComponent<PhotonView>().RPC("ResetPosition", RpcTarget.AllBuffered);
-                //Score.IncreaseScore(ScoreScript.Score.FirstPlayerScore);
-                //goal = true;
-                //StartCoroutine(ResetPosition());
+               
                 if (PhotonNetwork.IsMasterClient)
                 {
                     PhotonNetwork.Destroy(this.gameObject);
@@ -42,10 +36,7 @@ public class PuckScript : MonoBehaviourPunCallbacks
             {
                 Debug.Log("problem3");
                 other.gameObject.GetComponent<PhotonView>().RPC("IncreaseScore", RpcTarget.AllBuffered,ScoreScript.Score.SecondPlayerScore);
-                //this.gameObject.GetComponent<PhotonView>().RPC("ResetPosition",RpcTarget.AllBuffered);
-                //Score.IncreaseScore(ScoreScript.Score.SecondPlayerScore);
-                //goal = true;
-                //StartCoroutine(ResetPosition());
+               
                 if (PhotonNetwork.IsMasterClient)
                 {
                     PhotonNetwork.Destroy(this.gameObject);
@@ -55,13 +46,5 @@ public class PuckScript : MonoBehaviourPunCallbacks
        }
     }
     
-    //private IEnumerator ResetPosition()
-    //{
-    //    yield return new WaitForSecondsRealtime(1);
-    //    goal = false;
-    //    PhotonNetwork.Instantiate("Puck", new Vector3(0.0f, 1.25f, 0f), Quaternion.identity, 0);
-        
-        
-    //    //rb.velocity = rb.position = new Vector3(0f, 1.25f, 0f);
-    //}
+ 
 }

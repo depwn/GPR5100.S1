@@ -46,7 +46,7 @@ public class ScoreScript : MonoBehaviourPunCallbacks
         if(score == Score.FirstPlayerScore)
         {
             Player1ScoreText.text = (++player1score).ToString();
-            if (player1score >= 1)
+            if (player1score >= 5)
             {
                 PhotonNetwork.DestroyAll();
                 playerNameText = Movement.names[0];
@@ -54,16 +54,15 @@ public class ScoreScript : MonoBehaviourPunCallbacks
                 /*if (!isActive)
                 {
                     ActivatePanel(Win_UI_Panel.name);
-
                 }*/
                 isActive = true;
-                
+                leaveroom();
             }
         }
         else
         {
             Player2ScoreText.text = (++player2score).ToString();
-            if (player2score >= 1)
+            if (player2score >= 5)
             {
 
                 PhotonNetwork.DestroyAll();
@@ -75,40 +74,30 @@ public class ScoreScript : MonoBehaviourPunCallbacks
                     ActivatePanel(Win_UI_Panel.name);
 
                 }*/
-                
+                leaveroom();
             }
         }
     }
 
     private void Update()
     {
-        if (isActive == true)
+        if (isActive)
         {
             ActivatePanel(Win_UI_Panel.name);
             //Win_UI_Panel.SetActive(true);
         }
     }
-    /*private void Update()
-    {
-        if(player1score>=5){
-            
-            playerNameText = Movement.names[0];
-            winnerwinnerchickendinner();
-            PhotonNetwork.DestroyAll();
-        }
-        else if (player2score >= 5)
-        {
-            
-            playerNameText = Movement.names[1];
-            winnerwinnerchickendinner();
-            PhotonNetwork.DestroyAll();
-        }
-    }*/
-
 
     public void ActivatePanel(string panelToBeActivated)
     {
         Win_UI_Panel.SetActive(panelToBeActivated.Equals(Win_UI_Panel.name));
-        
+    }
+
+    [PunRPC]
+    public void leaveroom()
+    {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
+        PhotonNetwork.LoadLevel(0);
     }
 }

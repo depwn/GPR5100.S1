@@ -39,5 +39,6 @@ MonoBehaviour:
   - OnCollisionEnter
   - IncreaseScore
   - ResetPosition
+  - leaveroom
   DisableAutoOpenWizard: 1
   ShowSettings: 1
