@@ -21,7 +21,7 @@ public class Movement : MonoBehaviourPunCallbacks
     TextMeshProUGUI playerNameText;
 
     [SerializeField]
-    private float thrust=100000f;
+    private float thrust=0.5f;
 
     void Start()
     {
