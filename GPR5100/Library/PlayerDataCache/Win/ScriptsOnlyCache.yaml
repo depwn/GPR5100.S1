@@ -20,6 +20,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonTransformViewClassicEditor
+    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.Utilities.dll:
     - Photon.Pun.UtilityScripts.TextButtonTransition
@@ -27,6 +29,7 @@ ScriptsOnlyBuild:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
     - Photon.Pun.PhotonTransformView
+    - Photon.Pun.PhotonTransformViewClassic
     - Photon.Pun.PhotonView
     - Photon.Pun.ServerSettings
     Unity.Rider.Editor.dll:
@@ -94,6 +97,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11176}
     - Class: 114
       Script: {instanceID: 11380}
+    - Class: 114
+      Script: {instanceID: 11424}
     - Class: 114
       Script: {instanceID: 11884}
     - Class: 114
@@ -243,6 +248,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12846}
     - Class: 114
       Script: {instanceID: 12916}
+    - Class: 114
+      Script: {instanceID: 13012}
     - Class: 114
       Script: {instanceID: 13086}
     - Class: 114
@@ -818,7 +825,7 @@ ScriptsOnlyBuild:
     className: MusicMenu
   - hash:
       serializedVersion: 2
-      Hash: 8f9048730561a469d2b35d5003ba4610
+      Hash: e0612a475afa045cd4e80b09e741b7ca
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ScoreScript
@@ -1624,4 +1631,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/LobbyScene.unity
   - Assets/Scenes/AirHockeyTable.unity
-  playerPath: C:/Users/Depwn/Documents/Unity 2017 Projects/UnityRepositoryNew/GPR5100/GPR5100.S1/GPR5100/Builds/GPR5100.exe
+  playerPath: C:/Users/TitanoRr/Desktop/GPR5100.exe

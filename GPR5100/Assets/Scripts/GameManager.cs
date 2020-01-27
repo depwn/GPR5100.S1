@@ -31,12 +31,18 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+       
         if (GameObject.FindGameObjectWithTag("Puck")!=true)
+       
         {
+       
             StartCoroutine(ResetPosition());
+       
             //PhotonNetwork.Instantiate("Puck", new Vector3(0.0f, 1.25f, 0f), Quaternion.identity, 0);
+       
         }
     }
+
     [PunRPC]
     public  IEnumerator ResetPosition()
     {
