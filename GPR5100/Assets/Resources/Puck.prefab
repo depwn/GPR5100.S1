@@ -33,7 +33,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.25, z: -0.02}
   m_LocalScale: {x: 0.2, y: 0.0065601, z: 0.2}
-  m_Children: []
+  m_Children:
+  - {fileID: 1900638055878808272}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -126,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a9bde80979ada4e9e5b5245e7432cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: {fileID: 0}
+  Score: {fileID: 6654918095596598567}
 --- !u!114 &-8793770266136140791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +165,48 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
+--- !u!1 &5259769080046597837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1900638055878808272}
+  - component: {fileID: 6654918095596598567}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1900638055878808272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259769080046597837}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -114.32753, z: 0.0999988}
+  m_LocalScale: {x: 5, y: 152.4367, z: 5}
+  m_Children: []
+  m_Father: {fileID: 1047166291757000951}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6654918095596598567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259769080046597837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41566fd63a41c8649bb30bf0190c3bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player1ScoreText: {fileID: 0}
+  Player2ScoreText: {fileID: 0}

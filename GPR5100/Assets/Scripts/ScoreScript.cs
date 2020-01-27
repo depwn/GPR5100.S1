@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class ScoreScript : MonoBehaviour
 {
@@ -16,6 +17,14 @@ public class ScoreScript : MonoBehaviour
     
     private int player1score, player2score;
 
+    public void Start()
+    {
+        player1score = 0;
+        player2score = 0;
+    }
+
+
+    [PunRPC]
     public void IncreaseScore(Score score)
     {
         if(score == Score.FirstPlayerScore)

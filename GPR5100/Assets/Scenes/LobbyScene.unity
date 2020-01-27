@@ -1269,8 +1269,7 @@ MonoBehaviour:
   playerListContent: {fileID: 1396198818}
   startGameButton: {fileID: 503160507}
   RoomList_UI_Panel: {fileID: 2010485768}
-  roomListEntryPrefab: {fileID: 1252797748048109091, guid: 5dc44bfa7a0d258489acbcd2b912d338,
-    type: 3}
+  roomListEntryPrefab: {fileID: 114706, guid: 03c5e15309335324fba99d68e38cb08b, type: 3}
   roomListParentGameobject: {fileID: 505941761}
   JoinRandomRoom_UI_Panel: {fileID: 1438516555}
 --- !u!4 &377519874

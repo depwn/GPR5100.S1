@@ -37,5 +37,7 @@ MonoBehaviour:
   - ApplyForce
   - OnCollisionStay
   - OnCollisionEnter
+  - IncreaseScore
+  - ResetPosition
   DisableAutoOpenWizard: 1
   ShowSettings: 1
